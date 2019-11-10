@@ -2,8 +2,27 @@
 
 <launch>
 
-<node pkg="joy" name="joy_node" type="joy_node" output="screen" /> 
+<node pkg="joy" name="joy_node1" type="joy_node" output="screen" > 
+	<param name="dev" value="/dev/input/js0" />
+	<remap from="joy" to="/driver1/joy"/>
+</node>
 
-<node pkg="SLAM" name="joy" type="joystick_controler_new.py" output="screen" />
+<node pkg="teleop_twist_joy" name="teleop_twist_joy1" type="teleop_node">
+    	<rosparam command="load" file="$(find convoy_gazebo)/config/config.yaml" />
+	<remap from="/driver1/joy" to="joy"/>
+	<remap from="cmd_vel" to="/driver1/cmd_vel"/>
+</node>
+
+
+<node pkg="joy" name="joy_node2" type="joy_node" output="screen" > 
+	<param name="dev" value="/dev/input/js1" />
+	<remap from="joy" to="/driver2/joy"/>
+</node>
+
+<node pkg="teleop_twist_joy" name="teleop_twist_joy2" type="teleop_node">
+    	<rosparam command="load" file="$(find convoy_gazebo)/config/config.yaml" />
+	<remap from="/driver2/joy" to="joy"/>
+	<remap from="cmd_vel" to="/driver1/cmd_vel"/>
+</node>
 
 </launch>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+
+ <include file="$(find convoy_gazebo)/launch/outdoor_world.launch" />
+
+ <include file="$(find convoy_gazebo)/launch/put_kbot_in_world.launch" />
+
+</launch>

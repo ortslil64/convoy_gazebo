@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro '$(find convoy_gazebo)/urdf/KoBot_ai.urdf.xacro'" />
+  <node name="spawn_ABot" pkg="gazebo_ros" type="spawn_model" args="-urdf -model kobot_ai -param robot_description -z 0.5" respawn="false" output="screen" />
+  <node pkg="robot_state_publisher" name="publisher_state_pub" type="robot_state_publisher" />
+</launch>

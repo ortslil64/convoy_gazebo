@@ -16,7 +16,7 @@
  </group>
 
  <group ns="ai">
-<param name="robot_description" command="$(find xacro)/xacro '$(find convoy_gazebo)/urdf/KoBot.urdf.xacro'" />
+<param name="robot_description" command="$(find xacro)/xacro '$(find convoy_gazebo)/urdf/KoBot_ai.urdf.xacro'" />
   <node name="spawn_ABot" pkg="gazebo_ros" type="spawn_model" args="-urdf -model kbot_ai -param robot_description -x 2.0 -z 0.5" respawn="false" output="screen" />
   <node pkg="robot_state_publisher" name="state_pub_ai" type="robot_state_publisher" />
  </group>

@@ -39,7 +39,7 @@
         <collision name="120m_landscape_smooth_tri_collision">
           <geometry>
             <mesh>
-              <uri>file://120m_landscape_smooth_tri.dae</uri>
+              <uri>model://models/120m_landscape_smooth_tri.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -47,7 +47,7 @@
         <visual name="120m_landscape_smooth_tri">
           <geometry>
             <mesh>
-              <uri>file://120m_landscape_smooth_tri.dae</uri>
+              <uri>model://models/120m_landscape_smooth_tri.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>

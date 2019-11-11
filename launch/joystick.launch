@@ -9,7 +9,7 @@
 
 <node pkg="teleop_twist_joy" name="teleop_twist_joy1" type="teleop_node">
     	<rosparam command="load" file="$(find convoy_gazebo)/config/config.yaml" />
-	<remap from="/driver1/joy" to="joy"/>
+	<remap from="joy" to="/driver1/joy"/>
 	<remap from="cmd_vel" to="/driver1/cmd_vel"/>
 </node>
 
@@ -21,7 +21,7 @@
 
 <node pkg="teleop_twist_joy" name="teleop_twist_joy2" type="teleop_node">
     	<rosparam command="load" file="$(find convoy_gazebo)/config/config.yaml" />
-	<remap from="/driver2/joy" to="joy"/>
+	<remap from="joy" to="/driver2/joy"/>
 	<remap from="cmd_vel" to="/driver1/cmd_vel"/>
 </node>
 

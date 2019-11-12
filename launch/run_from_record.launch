@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+
+ <include file="$(find convoy_gazebo)/launch/outdoor_world.launch" />
+
+ <group ns="driver1">
+<param name="robot_description" command="$(find xacro)/xacro '$(find convoy_gazebo)/urdf/KoBot.urdf.xacro'" />
+  <node name="spawn_ABot" pkg="gazebo_ros" type="spawn_model" args="-urdf -model kbot_driver1 -param robot_description -x 0.0 -z 0.5" respawn="false" output="screen" />
+  <node pkg="robot_state_publisher" name="state_pub_driver1" type="robot_state_publisher" />
+ </group>
+
+
+
+ <node pkg="rosbag" type="play" name="rosbag_player_cmd_vel"
+       args="$(find convoy_gazebo)/bag/cmd_vel_rec.bag" launch-prefix="bash -c 'sleep 5; $0 $@' " />
+
+<node pkg="rqt_image_view" type="rqt_image_view" name="image_view_debug" args="/driver1/camera/image_raw"/>
+
+
+</launch>

@@ -56,9 +56,7 @@
   </collision>
   </link>
 
-  <gazebo reference="right_wheel">
-    <material>Gazebo/Black</material>
-  </gazebo>
+  
 
   <joint name="base_link_right_wheel" type="continuous">
     <parent link="base_link"/>
@@ -175,9 +173,7 @@
 
    
 
-  <gazebo reference="right_back_wheel">
-    <material>Gazebo/Black</material>
-  </gazebo>
+  
 
   <joint name="base_link_right_back_wheel" type="continuous">
     <parent link="base_link"/>
@@ -217,9 +213,7 @@
   </collision>
   </link>
 
-  <gazebo reference="left_back_wheel">
-    <material>Gazebo/Black</material>
-  </gazebo>
+  
 
   <joint name="base_link_left_back_wheel" type="continuous">
     <parent link="base_link"/>
@@ -227,6 +221,8 @@
     <axis xyz="0 1 0"/>
     <origin xyz="-0.3 0.3 0.075"/>
   </joint>
+
+
 
   <transmission name="T_base_link_left_back_wheel">
     <type>transmission_interface/SimpleTransmission</type>
@@ -238,8 +234,29 @@
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
   </transmission>
+<!-- gazebo properties -->
+<gazebo reference="right_wheel">
+    <material>Gazebo/Black</material>
+<mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+  </gazebo>
 
+<gazebo reference="left_back_wheel">
+    <material>Gazebo/Black</material>
+<mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+  </gazebo>
+<gazebo reference="left_wheel">
+    <material>Gazebo/Black</material>
+<mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+  </gazebo>
 
+<gazebo reference="right_back_wheel">
+    <material>Gazebo/Black</material>
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+  </gazebo>
 
 <gazebo>
     <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
@@ -250,8 +267,8 @@
         <leftRearJoint>base_link_left_back_wheel</leftRearJoint>
         <rightRearJoint>base_link_right_back_wheel</rightRearJoint>
         <wheelSeparation>0.545</wheelSeparation>
-        <wheelDiameter>0.2</wheelDiameter>
-        <torque>20</torque>
+        <wheelDiameter>0.24</wheelDiameter>
+        <torque>30</torque>
         <commandTopic>cmd_vel</commandTopic>
         <robotBaseFrame>base_link</robotBaseFrame>
         <broadcastTF>1</broadcastTF>

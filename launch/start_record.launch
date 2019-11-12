@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+
+ <include file="$(find convoy_gazebo)/launch/outdoor_world.launch" />
+
+ <group ns="driver1">
+<param name="robot_description" command="$(find xacro)/xacro '$(find convoy_gazebo)/urdf/KoBot.urdf.xacro'" />
+  <node name="spawn_ABot" pkg="gazebo_ros" type="spawn_model" args="-urdf -model kbot_driver1 -param robot_description -x 0.0 -z 0.5 -Y 2.06" respawn="false" output="screen" />
+  <node pkg="robot_state_publisher" name="state_pub_driver1" type="robot_state_publisher" />
+ </group>
+
+<node pkg="joy" name="joy_node1" type="joy_node" output="screen" > 
+	<param name="dev" value="/dev/input/js0" />
+	<remap from="joy" to="/driver1/joy"/>
+</node>
+
+<node pkg="teleop_twist_joy" name="teleop_twist_joy1" type="teleop_node">
+    	<rosparam command="load" file="$(find convoy_gazebo)/config/config.yaml" />
+	<remap from="joy" to="/driver1/joy"/>
+	<remap from="cmd_vel" to="/driver1/cmd_vel"/>
+</node>
+
+ <node pkg="rosbag" type="record" name="rosbag_record_model_states"
+       args="record -o $(find convoy_gazebo)/bag/model_states_rec /gazebo/model_states "/>
+
+<node pkg="rqt_image_view" type="rqt_image_view" name="image_view_debug" args="/driver1/camera/image_raw"/>
+
+
+</launch>
